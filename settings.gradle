@@ -1,0 +1,4 @@
+include ':base'
+include ':news'
+include ':app'
+rootProject.name = "Top News"
