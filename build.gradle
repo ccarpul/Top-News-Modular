@@ -8,7 +8,7 @@ buildscript {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
     dependencies {
-        apply from: "$rootProject.rootDir/dependencies-all.gradle"
+        apply from: 'dependencies-all.gradle'
         classpath department.build.gradle
         classpath department.build.kotlin
     }
@@ -21,7 +21,6 @@ allprojects {
     }
     dependencies {
         apply from: "$rootProject.rootDir/dependencies-groups.gradle"
-
     }
 }
 
