@@ -1,0 +1,33 @@
+def Group(Closure closure) {
+
+    closure.delegate = dependencies
+    return closure
+}
+
+ext {
+
+    libraries = Group {
+        implementation department.libs
+    }
+
+    kotlin = Group {
+        implementation department.kotlin.lib
+        implementation department.kotlin.coroutines
+    }
+
+    view = Group {
+        implementation department.compat
+        implementation department.design.design
+        implementation department.design.constraint
+        implementation department.design.recyclerView
+    }
+
+    testing = Group {
+        testImplementation department.jUnit
+    }
+
+    androidTesting = Group {
+        androidTestImplementation department.androidxTest.junit
+        androidTestImplementation department.androidxTest.expressoCore
+    }
+}

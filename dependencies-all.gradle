@@ -1,0 +1,24 @@
+ext.department  =
+    [
+            'build'         : [
+                            'gradle'        : "com.android.tools.build:gradle:3.3.2",
+                            'kotlin'        : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+            ],
+            'libs'          : fileTree(dir: 'libs', include: ['*.jar']),
+            'compat'        : 'androidx.appcompat:appcompat:1.2.0',
+            'kotlin'        : [
+                            'lib'           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+                            'coroutines'    : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.1'
+            ],
+            'design'        : [
+                            'constraint'    : 'androidx.constraintlayout:constraintlayout:1.1.3',
+                            'recyclerView'  : 'androidx.recyclerview:recyclerview:1.1.0',
+                            'design'        : 'com.google.android.material:material:1.2.1'
+
+            ],
+            'jUnit'         : 'junit:junit:4.12',
+            'androidxTest'  : [
+                            'junit' : 'androidx.test.ext:junit:1.1.1',
+                            'expressoCore' : 'androidx.test.espresso:espresso-core:3.1.0'
+            ]
+    ]
