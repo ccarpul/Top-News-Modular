@@ -1,8 +1,25 @@
 apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
-
 apply from: '../config-android.gradle'
 
+android {
+
+    baseFeature true
+    defaultConfig {
+        buildConfigField "String", "API_PROTOCOL", API_PROTOCOL
+        buildConfigField "String", "API_PROTOCOL_SECURE", API_PROTOCOL_SECURE
+        buildConfigField "String", "API_DOMAIN_DEV", API_DOMAIN_DEV
+        buildConfigField "String", "API_VERSION", API_VERSION
+    }
+
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        def NEWS_API_KEY = properties.getProperty("NEWS_API_KEY", "")
+        it.buildConfigField 'String', "NEWS_API_KEY", NEWS_API_KEY
+        it.resValue 'string', "NEWS_API_KEY", NEWS_API_KEY
+    }
+}
 dependencies {
 
     libraries()
@@ -10,4 +27,7 @@ dependencies {
     view()
     testing()
     androidTesting()
+    koin()
+    network()
+    lifecycle()
 }
