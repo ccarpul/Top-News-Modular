@@ -45,5 +45,22 @@ dependencies {
 
     implementation project(':base')
     implementation project(':news')
+}
 
+gradle.taskGraph.whenReady {
+    renameApkFile
+}
+
+task renameApkFile() {
+
+    android.applicationVariants.all { variant ->
+
+        variant.outputs.all { output ->
+
+            def dateAndTime = new Date().format("yyyyMMdd")
+
+            def fileName = "TopNews" + "-" + dateAndTime + ".apk"
+            output.outputFileName = fileName
+        }
+    }
 }
