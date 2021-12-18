@@ -15,6 +15,11 @@ ext {
         implementation department.kotlin.coroutines
     }
 
+    lifecycle = Group {
+        implementation department.lifecycle.extensions
+        implementation department.lifecycle.viewmodel
+    }
+
     view = Group {
         implementation department.compat
         implementation department.design.design
@@ -24,10 +29,31 @@ ext {
 
     testing = Group {
         testImplementation department.jUnit
+        testImplementation department.mockk.mockk
+        androidTestImplementation department.mockk.android
     }
 
     androidTesting = Group {
         androidTestImplementation department.androidxTest.junit
         androidTestImplementation department.androidxTest.expressoCore
+        testImplementation department.androidxTest.testingCore
+        testImplementation department.androidxTest.coroutinesTest
+    }
+
+    network = Group {
+        implementation department.network.retrofit
+        implementation department.network.okHttp
+        implementation department.network.gson
+    }
+
+    koin = Group {
+        implementation department.koin.android
+        implementation department.koin.viewModel
+        implementation department.koin.scope
+    }
+
+    navigation = Group {
+        implementation department.navigation.fragment
+        implementation department.navigation.ui
     }
 }
