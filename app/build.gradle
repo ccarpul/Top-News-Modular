@@ -3,10 +3,15 @@ apply from: '../config-android.gradle'
 
 android {
 
+    def buildNumber = 1
+    ext {
+        buildNumber = ("git rev-list --all --count").execute().text.trim().toInteger()
+    }
+
     defaultConfig {
         applicationId "com.carpul.topnews"
-        versionCode 1
         versionName "1.0"
+        versionCode buildNumber
     }
 
     buildTypes {
@@ -57,9 +62,11 @@ task renameApkFile() {
 
         variant.outputs.all { output ->
 
-            def dateAndTime = new Date().format("yyyyMMdd")
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+            def dateAndTime = new Date().format("yyyy-MM-dd")
 
-            def fileName = "TopNews" + "-" + dateAndTime + ".apk"
+            def fileName = "TopNews-${dateAndTime}-${versionName}-${versionCode}.apk"
             output.outputFileName = fileName
         }
     }
