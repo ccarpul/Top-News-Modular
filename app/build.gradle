@@ -64,7 +64,7 @@ task renameApkFile() {
 
             def versionName = variant.versionName
             def versionCode = variant.versionCode
-            def dateAndTime = new Date().format("yyyy-MM-dd")
+            def dateAndTime = new Date().format("yyyy/MM/dd")
 
             def fileName = "TopNews-${dateAndTime}-${versionName}-${versionCode}.apk"
             output.outputFileName = fileName
