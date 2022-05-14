@@ -10,8 +10,6 @@ android {
 
     defaultConfig {
         applicationId "com.carpul.topnews"
-        versionName "1.0"
-        versionCode buildNumber
     }
 
     buildTypes {
@@ -47,6 +45,7 @@ dependencies {
     view()
     testing()
     androidTesting()
+    koin()
 
     implementation project(':base')
     implementation project(':news')

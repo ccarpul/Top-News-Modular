@@ -1,28 +1,45 @@
 package com.carpul.news.views
 
-import android.os.Bundle
 import android.util.Log
-import com.carpul.base.view.BaseActivity.Companion.TAG
+import android.view.View
+import android.widget.TextView
 import com.carpul.base.view.BaseFragment
 import com.carpul.news.R
-import viewmodel.TopNewsViewModel
+import com.carpul.news.domain.entities.ArticleListModel
+import com.carpul.news.viewmodel.EverythingNewsViewModel
+import kotlinx.android.synthetic.main.fragment_top_news.*
 
-class TopNewsFragment : BaseFragment<TopNewsViewModel, TopNewsViewModel.State>() {
+class TopNewsFragment : BaseFragment<EverythingNewsViewModel, EverythingNewsViewModel.State>() {
 
 
     override fun getLayoutId(): Int = R.layout.fragment_top_news
 
+    override fun onStateChanged(state: EverythingNewsViewModel.State) {
+        Log.i(TAG, "onStateChanged: $state")
+        when (state) {
+            is EverythingNewsViewModel.State.Loading -> {}
+            is EverythingNewsViewModel.State.Success -> processSuccess(state.articlesListModel)
+            is EverythingNewsViewModel.State.Error -> processError(state.errorMessage)
 
-    override fun onStateChanged(state: TopNewsViewModel.State) {
-        TODO("Not yet implemented")
+        }
     }
 
-    override fun initViews() {
-        TODO("Not yet implemented")
+    private fun processSuccess(articlesListModel: ArticleListModel) {
+
+        var articles = ""
+        articlesListModel.articles.forEach {
+            articles += "\n" +it.title + "\n"+ it.description +"\n"+ it.publishedAt + "\n\n"
+        }
+        textView.text = articles
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.i(TAG, "onCreate: TopNewsFragment")
+
+    private fun processError(errorMessage: String) {
+        textView.text = errorMessage
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchEverythingNews("bitcoin")
     }
 }
