@@ -8,6 +8,9 @@ android {
         buildNumber = ("git rev-list --all --count").execute().text.trim().toInteger()
     }
 
+    println rootProject.versionName
+    println rootProject.versionCode
+
     defaultConfig {
         applicationId "com.carpul.topnews"
         versionName "1.0"
