@@ -5,7 +5,7 @@ android {
 
     def buildNumber = 1
     ext {
-        buildNumber = ("git rev-list --all --count").execute().text.trim().toInteger()
+        //buildNumber = ("git rev-list --all --count").execute().text.trim().toInteger()
     }
 
     println rootProject.versionName
@@ -13,8 +13,8 @@ android {
 
     defaultConfig {
         applicationId "com.carpul.topnews"
-        versionName "1.0"
-        versionCode buildNumber
+        versionName = rootProject.versionName
+        versionCode = 1
     }
 
     buildTypes {
@@ -50,6 +50,7 @@ dependencies {
     view()
     testing()
     androidTesting()
+    koin()
 
     implementation project(':base')
     implementation project(':news')
